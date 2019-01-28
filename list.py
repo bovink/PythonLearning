@@ -1,3 +1,5 @@
+from collections import deque
+
 # 创建列表
 myList = []
 print(myList)
@@ -42,3 +44,25 @@ print(index)
 # 颠倒列表
 myList.reverse()
 print(myList)
+
+# 将列表当做堆栈使用，堆栈的特点为后进先出
+# 关键方法为append和pop
+
+stack = [1, 2, 3, 4]
+stack.append(5)
+stack.append(6)
+print(stack)
+last = stack.pop()
+print(last)
+last = stack.pop()
+print(last)
+
+# 将列表当做队列使用，队列的特点先进先出
+queue = deque([1, 2, 3, 4])
+queue.append(5)
+queue.append(6)
+print(queue)
+last = queue.popleft()
+print(last)
+last = queue.popleft()
+print(last)
