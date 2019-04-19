@@ -3,6 +3,7 @@ from PyQt5.QtGui import QIcon
 import sys
 
 
+# 必须是QMainWindow
 class Window(QMainWindow):
 
     def __init__(self):
@@ -18,7 +19,11 @@ class Window(QMainWindow):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
+        self.statusBar()
+
         mainMenu = self.menuBar()
+        # 必须要设置为False才会显示menuBar，至少Mac上是这样
+        mainMenu.setNativeMenuBar(False)
         fileMenu = mainMenu.addMenu('File')
         editMenu = mainMenu.addMenu('Edit')
         viewMenu = mainMenu.addMenu('View')
@@ -26,7 +31,7 @@ class Window(QMainWindow):
         toolsMenu = mainMenu.addMenu('Tools')
         helpMenu = mainMenu.addMenu('Help')
 
-        exitButton = QAction(QIcon('/myresource/cookie.png'), 'Exit', self)
+        exitButton = QAction(QIcon('exit.png'), 'Exit', self)
         exitButton.setShortcut('Ctrl+Q')
         exitButton.setStatusTip('Exit application')
         exitButton.triggered.connect(self.close)
