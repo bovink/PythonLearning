@@ -32,10 +32,15 @@ class Window(QMainWindow):
         helpMenu = mainMenu.addMenu('Help')
 
         exitButton = QAction(QIcon('exit.png'), 'Exit', self)
-        exitButton.setShortcut('Ctrl+Q')
+        exitButton.setShortcut('Ctrl+W')
         exitButton.setStatusTip('Exit application')
         exitButton.triggered.connect(self.close)
         fileMenu.addAction(exitButton)
+
+        # 至少要添加一个控件给窗口，才能激活快捷键
+        button = QPushButton('click', self)
+        button.setGeometry(0, 0, 100, 100)
+        button.move((self.width - button.geometry().width()) / 2, (self.height - button.geometry().height()) / 2)
 
         self.show()
 
