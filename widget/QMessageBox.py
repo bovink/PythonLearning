@@ -26,7 +26,9 @@ class Window(QWidget):
         button.show()
 
     def clickBtn(self):
+        # 点击按钮后，直接显示MessageBox
         buttonReply = QMessageBox.question(self, 'Message', 'Do you like PyQt5', QMessageBox.Yes, QMessageBox.No)
+        # 点击选项后才会继续执行
         if buttonReply == QMessageBox.Yes:
             print('yes')
         else:

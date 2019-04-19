@@ -18,6 +18,7 @@ class Window(QWidget):
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.show()
 
+        # 这样不需要window setLayout也可以显示按钮
         button = QPushButton('click', self)
         button.clicked.connect(self.clickBtn)
         button.setToolTip('click btn show console msg')
