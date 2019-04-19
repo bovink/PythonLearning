@@ -18,8 +18,8 @@ class Window(QWidget):
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.show()
 
-        # 水平排列
-        layout = QHBoxLayout(self)
+        # 垂直排列
+        layout = QVBoxLayout(self)
 
         btn1 = QPushButton('btn1')
         btn2 = QPushButton('btn2')
