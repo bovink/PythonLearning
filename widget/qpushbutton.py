@@ -17,13 +17,13 @@ class Window(QWidget):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.show()
-        self.window = QVBoxLayout()
 
-        button = QPushButton('click')
+        button = QPushButton('click', self)
         button.clicked.connect(self.clickBtn)
+        button.setToolTip('click btn show console msg')
+        button.setGeometry(0, 0, 100, 100)
+        button.move(button.geometry().width(), button.geometry().height())
         button.show()
-        self.window.addWidget(button)
-        self.setLayout(self.window)
 
     def clickBtn(self):
         print('you clicked btn')
