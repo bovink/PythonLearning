@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{title}}</h2>
+
+<p>this is extends from base.html</p>
+
+<form method="post" action="/getparam">
+<input name="name" type="text" width="60">
+<input name="age" type="text" width="60">
+<input value="do it" type="submit">
+</form>
+
+{% endblock %}
