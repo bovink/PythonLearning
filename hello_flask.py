@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,redirect
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -14,7 +14,7 @@ def initEntry() -> 'html':
     return render_template('entry.html', title=' i defined the title')
 
 
-@app.route('/getparam',methods=['post'])
+@app.route('/getparam', methods=['post'])
 def getParam() -> 'html':
     name = request.form['name']
     age = request.form['age']
