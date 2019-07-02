@@ -12,24 +12,21 @@ key = '123'
 key = pad(key)
 iv = Random.new().read(16)
 # iv = pad(iv)
-obj = AES.new(key, AES.MODE_CBC, iv)
+obj = AES.new(key, AES.MODE_CFB, iv)
 
 # message = "The answer is no"
 # 读图
-file = open('button.png','rb')
+file = open('page10_atlas0_2.png', 'rb')
 filecontent = file.read()
 file.close()
 
 ciphertext = obj.encrypt(filecontent)
 print(ciphertext)
 
-f2 = open('a.txt','wb')
-f2.write(base64.b64encode(iv+ciphertext))
+f2 = open('a.txt', 'wb')
+# f2.write(base64.b64encode(iv+ciphertext))
+f2.write(iv + ciphertext)
 f2.close()
-
-
-
-
 
 # obj2 = AES.new('This is a key123', AES.MODE_CBC, 'This is an IV456')
 # a = obj2.decrypt(ciphertext)
@@ -37,17 +34,17 @@ f2.close()
 # print(type(a))
 
 # 存图
-s = open('a.txt','rb')
-sc= s.read()
+s = open('a.txt', 'rb')
+sc = s.read()
 s.close()
 
-h = base64.b64decode(sc)
-iv = h[:16]
-aa = h[16:]
-obj2 = AES.new(key, AES.MODE_CBC, iv)
+# h = base64.b64decode(sc)
+iv = sc[:16]
+aa = sc[16:]
+obj2 = AES.new(key, AES.MODE_CFB, iv)
 
 n = obj2.decrypt(aa)
 
-f2 = open('a.png','wb')
+f2 = open('a.png', 'wb')
 f2.write(n)
 f2.close()
