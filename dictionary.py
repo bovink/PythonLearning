@@ -1,3 +1,4 @@
+import os
 from os import listdir
 from Crypto.Cipher import AES
 
@@ -35,8 +36,8 @@ for i in free_pages_name:
 
 print('====================purchase page:%d====================' % purchase_pages_name.__len__())
 
-for i in purchase_pages_name:
-    print(i)
+# for i in purchase_pages_name:
+#     print(i)
 
 ##############################加密部分代码##############################
 
@@ -47,13 +48,13 @@ BLOCK_SIZE = 16
 pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(s) % BLOCK_SIZE).encode(encoding="utf-8")
 unpad = lambda s: s[:-ord(s[len(s) - 1:])]
 
-aes = AES.new(key, AES.MODE_CBC, iv)
 
 
 def encrypt(name):
     f = open(name, 'rb')
     content = f.read()
     f.close()
+    aes = AES.new(key, AES.MODE_CBC, iv)
     return aes.encrypt(pad(content))
 
 
@@ -61,3 +62,19 @@ def output(data, name):
     f = open(name, 'wb')
     f.write(data)
     f.close()
+
+
+# 创建免费文件夹和收费文件夹
+free_dir = 'test/free/'
+purchase_dir = 'test/purchase/'
+try:
+    os.makedirs(free_dir)
+    os.makedirs(purchase_dir)
+except:
+    pass
+
+for i in free_pages_name:
+    output(encrypt('time/waste1/' + i), free_dir + i)
+
+for i in purchase_pages_name:
+    output(encrypt('time/waste1/' + i), purchase_dir + i)
