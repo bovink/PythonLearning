@@ -1,4 +1,5 @@
 import os
+import zipfile
 from os import listdir
 from Crypto.Cipher import AES
 
@@ -49,7 +50,6 @@ pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(s)
 unpad = lambda s: s[:-ord(s[len(s) - 1:])]
 
 
-
 def encrypt(name):
     f = open(name, 'rb')
     content = f.read()
@@ -78,3 +78,19 @@ for i in free_pages_name:
 
 for i in purchase_pages_name:
     output(encrypt('time/waste1/' + i), purchase_dir + i)
+
+
+def compress_file(zipfilename, dirname):  # zipfilename是压缩包名字，dirname是要打包的目录
+    if os.path.isfile(dirname):
+        with zipfile.ZipFile(zipfilename, 'w') as z:
+            z.write(dirname)
+    else:
+        with zipfile.ZipFile(zipfilename, 'w') as z:
+            for root, dirs, files in os.walk(dirname):
+                for single_file in files:
+                    if single_file != zipfilename:
+                        filepath = os.path.join(root, single_file)
+                        z.write(filepath)
+
+
+compress_file('a.zip', 'test')
