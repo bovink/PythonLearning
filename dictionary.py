@@ -1,5 +1,5 @@
-import os
 from os import listdir
+from Crypto.Cipher import AES
 
 # 资源路径
 resource_path = 'time/waste1'
@@ -37,3 +37,27 @@ print('====================purchase page:%d====================' % purchase_page
 
 for i in purchase_pages_name:
     print(i)
+
+##############################加密部分代码##############################
+
+key = '1234567890123456'
+iv = '1234567890123456'
+
+BLOCK_SIZE = 16
+pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(s) % BLOCK_SIZE).encode(encoding="utf-8")
+unpad = lambda s: s[:-ord(s[len(s) - 1:])]
+
+aes = AES.new(key, AES.MODE_CBC, iv)
+
+
+def encrypt(name):
+    f = open(name, 'rb')
+    content = f.read()
+    f.close()
+    return aes.encrypt(pad(content))
+
+
+def output(data, name):
+    f = open(name, 'wb')
+    f.write(data)
+    f.close()
