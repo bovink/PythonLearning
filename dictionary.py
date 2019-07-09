@@ -4,7 +4,9 @@ from os import listdir
 from Crypto.Cipher import AES
 
 # 资源路径
-resource_path = 'time/waste1'
+resource_path = 'time/waste1/'
+# 课程名字
+bookname = 'ylzg'
 
 # 免费页面索引
 free_pages = [1, 2]
@@ -21,6 +23,8 @@ purchase_pages_name = []
 for i in free_pages:
     free_pages_filter.append('page' + str(i) + '_')
     free_pages_filter.append('page' + str(i) + '.fui')
+
+free_pages_filter.append('common')
 
 print(free_pages_filter)
 
@@ -65,7 +69,6 @@ def output(data, name):
 
 
 # 创建免费文件夹和收费文件夹
-bookname = 'ylzg'
 free_dir = 'free'
 purchase_dir = 'purchase'
 # 创建目录
@@ -76,10 +79,10 @@ except:
     pass
 
 for i in free_pages_name:
-    output(encrypt('time/waste1/' + i), bookname + '/' + free_dir + '/' + i)
+    output(encrypt(resource_path + i), bookname + '/' + free_dir + '/' + i)
 
 for i in purchase_pages_name:
-    output(encrypt('time/waste1/' + i), bookname + '/' + purchase_dir + '/' + i)
+    output(encrypt(resource_path + i), bookname + '/' + purchase_dir + '/' + i)
 
 
 def compress_file(zipfilename, dirname):  # zipfilename是压缩包名字，dirname是要打包的目录
