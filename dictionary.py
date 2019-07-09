@@ -87,12 +87,12 @@ def compress_file(zipfilename, dirname):  # zipfilename是压缩包名字，dirn
         with zipfile.ZipFile(zipfilename, 'w') as z:
             z.write(dirname)
     else:
-        with zipfile.ZipFile(zipfilename, 'w') as z:
-            for root, dirs, files in os.walk(dirname):
-                for single_file in files:
-                    if single_file != zipfilename:
-                        filepath = os.path.join(root, single_file)
-                        z.write(filepath)
+        z = zipfile.ZipFile(zipfilename,'w',zipfile.ZIP_DEFLATED)
+        filelist = os.listdir(dirname)
+        for file in filelist:
+            fullpath = os.path.join(dirname,file)
+            z.write(fullpath,file)
+        z.close()
 
 
 # 压缩包
