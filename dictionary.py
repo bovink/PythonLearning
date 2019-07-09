@@ -1,6 +1,5 @@
 import os
 import zipfile
-import base64
 from os import listdir
 from Crypto.Cipher import AES
 
@@ -54,8 +53,6 @@ unpad = lambda s: s[:-ord(s[len(s) - 1:])]
 def encrypt(name):
     f = open(name, 'rb')
     content = f.read()
-    if 'fui' in name:
-        content = base64.b64encode(content)
     f.close()
     aes = AES.new(key, AES.MODE_CBC, iv)
     return aes.encrypt(pad(content))
