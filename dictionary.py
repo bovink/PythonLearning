@@ -65,19 +65,21 @@ def output(data, name):
 
 
 # 创建免费文件夹和收费文件夹
-free_dir = 'test/free/'
-purchase_dir = 'test/purchase/'
+bookname = 'ylzg'
+free_dir = 'free'
+purchase_dir = 'purchase'
+# 创建目录
 try:
-    os.makedirs(free_dir)
-    os.makedirs(purchase_dir)
+    os.makedirs(bookname + '/' + free_dir)
+    os.makedirs(bookname + '/' + purchase_dir)
 except:
     pass
 
 for i in free_pages_name:
-    output(encrypt('time/waste1/' + i), free_dir + i)
+    output(encrypt('time/waste1/' + i), bookname + '/' + free_dir + '/' + i)
 
 for i in purchase_pages_name:
-    output(encrypt('time/waste1/' + i), purchase_dir + i)
+    output(encrypt('time/waste1/' + i), bookname + '/' + purchase_dir + '/' + i)
 
 
 def compress_file(zipfilename, dirname):  # zipfilename是压缩包名字，dirname是要打包的目录
@@ -93,5 +95,6 @@ def compress_file(zipfilename, dirname):  # zipfilename是压缩包名字，dirn
                         z.write(filepath)
 
 
-compress_file('a.zip', 'test')
-
+# 压缩包
+compress_file(bookname + '/' + free_dir + '.zip', bookname + '/' + free_dir)
+compress_file(bookname + '/' + purchase_dir + '.zip', bookname + '/' + purchase_dir)
