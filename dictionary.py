@@ -1,5 +1,6 @@
 import os
 import zipfile
+import shutil
 from os import listdir
 from Crypto.Cipher import AES
 
@@ -90,14 +91,17 @@ def compress_file(zipfilename, dirname):  # zipfilename是压缩包名字，dirn
         with zipfile.ZipFile(zipfilename, 'w') as z:
             z.write(dirname)
     else:
-        z = zipfile.ZipFile(zipfilename,'w',zipfile.ZIP_DEFLATED)
+        z = zipfile.ZipFile(zipfilename, 'w', zipfile.ZIP_DEFLATED)
         filelist = os.listdir(dirname)
         for file in filelist:
-            fullpath = os.path.join(dirname,file)
-            z.write(fullpath,file)
+            fullpath = os.path.join(dirname, file)
+            z.write(fullpath, file)
         z.close()
 
 
 # 压缩包
 compress_file(bookname + '/' + free_dir + '.zip', bookname + '/' + free_dir)
 compress_file(bookname + '/' + purchase_dir + '.zip', bookname + '/' + purchase_dir)
+
+shutil.rmtree(bookname + '/' + free_dir)
+shutil.rmtree(bookname + '/' + purchase_dir)
