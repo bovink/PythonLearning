@@ -4,6 +4,9 @@ import shutil
 from os import listdir
 from Crypto.Cipher import AES
 
+# 分别加密打包资源
+
+
 # 资源路径
 resource_path = 'time/waste1/'
 # 课程名字
@@ -85,6 +88,8 @@ for i in free_pages_name:
 for i in purchase_pages_name:
     output(encrypt(resource_path + i), bookname + '/' + purchase_dir + '/' + i)
 
+
+##############################打包部分代码##############################
 
 def compress_file(zipfilename, dirname):  # zipfilename是压缩包名字，dirname是要打包的目录
     if os.path.isfile(dirname):
