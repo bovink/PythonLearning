@@ -20,6 +20,3 @@ class Student(Person):
         print('class is', self.classroom)
 
 
-p = Student('lilei', 11)
-
-p.print()

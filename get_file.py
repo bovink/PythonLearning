@@ -1,0 +1,2 @@
+def getfile():
+    return 'file'
