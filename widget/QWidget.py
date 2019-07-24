@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import *
-import sys
 
 
 class Window(QWidget):
@@ -14,13 +13,15 @@ class Window(QWidget):
         self.initUI()
 
     def initUI(self):
-        #todo 添加更多的方法使用
+        # todo 添加更多的方法使用
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
-        self.show()
 
 
 if __name__ == '__main__':
-    app = QApplication([])
+    import sys
+
+    app = QApplication(sys.argv)
     window = Window()
+    window.show()
     sys.exit(app.exec_())
