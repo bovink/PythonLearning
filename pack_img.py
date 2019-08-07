@@ -14,6 +14,7 @@ output_data = '--data output/'
 output_data_suffix = '.plist '
 output_sheet = '--sheet output/'
 output_sheet_suffix = '.pvr.ccz '
+texture_format = '--texture-format pvr2ccz '
 
 
 filter_file = '/*.png '
@@ -22,6 +23,6 @@ if '.DS_Store' in subdir:
     subdir.remove('.DS_Store')
 for i in subdir:
     index = subdir.index(i) +1
-    name = 'bp'+str(index)
-    command = 'TexturePacker '+image_format+max_size+output_data+name+output_data_suffix+output_sheet+name+output_sheet_suffix+root_path+'/'+i+filter_file
+    name = 'bq'+str(index)
+    command = 'TexturePacker '+image_format+texture_format+max_size+output_data+name+output_data_suffix+output_sheet+name+output_sheet_suffix+root_path+'/'+i+filter_file
     os.system(command)
