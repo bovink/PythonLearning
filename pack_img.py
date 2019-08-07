@@ -18,8 +18,10 @@ output_sheet_suffix = '.pvr.ccz '
 
 filter_file = '/*.png '
 
+if '.DS_Store' in subdir:
+    subdir.remove('.DS_Store')
 for i in subdir:
-    index = subdir.index(i)
+    index = subdir.index(i) +1
     name = 'bp'+str(index)
     command = 'TexturePacker '+image_format+max_size+output_data+name+output_data_suffix+output_sheet+name+output_sheet_suffix+root_path+'/'+i+filter_file
     os.system(command)
