@@ -13,7 +13,7 @@ class Test:
         self.frameNum = frameNum
         self.frameTime=0.05
 
-root_path = 'bp'
+root_path = 'bq'
 subdir = os.listdir(root_path)
 subdir.sort()
 print(subdir)
